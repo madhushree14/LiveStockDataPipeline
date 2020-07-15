@@ -16,10 +16,14 @@ class StockData:
                 "interval": api_var.interval,
                 "apikey": api_var.api_key}
 
-        response = requests.get(self.api, data)
-        raw_stat = response.text
-        return json.loads(raw_stat)
+        with requests.get(self.api, data) as response:
+            json_data = response.text
 
-stocks = StockData()
-stock_data = stocks.get_data(api_var.symbol)
-# print(stock_data)
+        # response = requests.get(self.api, data)
+        # json_data = response.text
+        return json.loads(json_data)
+
+
+# dta = StockData()
+# mydt = dta.get_data(api_var.symbol)
+# print(mydt)
